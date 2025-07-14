@@ -1,0 +1,22 @@
+[project]
+name = "global-entry-scraper"
+version = "0.1.0"
+description = "Fork of James Calixto's global-entry-scraper project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "discord-webhook>=1.4.1",
+    "ruff>=0.12.3",
+]
+
+[tool.ruff]
+# This is the only setting you typically need to match Black's configuration.
+line-length = 120
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = [
+    "E", # pycodestyle errors
+    "F", # Pyflakes
+    "I", # isort (for import sorting)
+]

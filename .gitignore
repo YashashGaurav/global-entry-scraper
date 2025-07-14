@@ -1,2 +1,21 @@
-__pycache__/
+# Configuration with sensitive data
 config.py
+
+# Environment variables
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Virtual environments
+.venv/

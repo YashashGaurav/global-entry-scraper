@@ -1,0 +1,37 @@
+name: Check Global Entry Slots
+
+on:
+  schedule:
+    # Run every 4 hours
+    - cron: '0 */4 * * *'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  check-slots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          
+      - name: Install UV
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          export PATH="/home/runner/.cargo/bin:$PATH"
+          
+      - name: Install dependencies
+        run: |
+          export PATH="/home/runner/.cargo/bin:$PATH"
+          uv sync
+
+      - name: Create config.py with webhook URL
+        run: |
+          echo 'WEBHOOK_URL = "${{ secrets.DISCORD_WEBHOOK_URL }}"' > config.py
+          
+      - name: Run the slot checker
+        run: |
+          python main.py --location-ids ${{ secrets.LOCATION_IDS }} --before ${{ secrets.BEFORE_DATE }} --limit 10

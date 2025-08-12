@@ -19,3 +19,6 @@ __pycache__/
 
 # Virtual environments
 .venv/
+
+# Custom commands
+.devnotes.md

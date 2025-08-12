@@ -56,7 +56,7 @@ uv add <package-name>
 uv add --dev <package-name>
 
 # Run the scraper in development
-uv run python main.py --location-ids 5446 --before 2025-08-21 --limit 5
+uv run python main.py --location-ids 1234 --before 2023-12-31 --limit 5
 ```
 
 ## Security Note
@@ -67,6 +67,20 @@ uv run python main.py --location-ids 5446 --before 2025-08-21 --limit 5
 import os
 WEBHOOK_URL = os.getenv('DISCORD_WEBHOOK_URL', 'your-fallback-url')
 ```
+
+## Automated Checks with GitHub Actions
+
+This repository includes a GitHub Actions workflow that will automatically check for available slots every 4 hours. To set it up:
+
+1. Fork this repository to your own GitHub account
+2. Go to your forked repository's Settings > Secrets and Variables > Actions
+3. Add the following secrets:
+   - `DISCORD_WEBHOOK_URL`: Your Discord webhook URL
+   - `LOCATION_IDS`: Space-separated list of location IDs for the enrollment centers you want to check
+   - `BEFORE_DATE`: Date in YYYY-MM-DD format (e.g., "2023-12-31")
+4. The workflow will now run automatically every 4 hours and whenever you manually trigger it
+
+You can manually run the workflow by going to the Actions tab, selecting the "Check Global Entry Slots" workflow, and clicking "Run workflow".
 
 ## Location IDs
 

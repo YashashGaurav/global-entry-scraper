@@ -1,0 +1,4 @@
+import os
+
+# Get webhook URL from environment variable or use the hardcoded value
+WEBHOOK_URL = os.environ.get('DISCORD_WEBHOOK_URL', "your_discord_webhook_url")

@@ -34,4 +34,4 @@ jobs:
           
       - name: Run the slot checker
         run: |
-          python main.py --location-ids ${{ secrets.LOCATION_IDS }} --before ${{ secrets.BEFORE_DATE }} --limit 10
+          uv run python main.py --location-ids ${{ secrets.LOCATION_IDS }} --before ${{ secrets.BEFORE_DATE }} --limit 10 --silent
